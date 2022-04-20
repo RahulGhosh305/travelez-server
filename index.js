@@ -26,6 +26,7 @@ client.connect(err => {
     const subcribersEmail = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("subcribersEmail");
     const admins = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("admins");
     const bookClientsTours = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("bookClientsTours");
+    const upCommingEvent = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("upCommingEvent");
 
 
     // ADD NEW ADMINS
@@ -150,7 +151,21 @@ client.connect(err => {
                 res.send(documents)
             })
     })
-
+    // POST UPCOMMING EVENT
+    app.post('/upcommingevent', (req, res) => {
+        const data = req.body;
+        upCommingEvent.insertOne(data)
+            .then(result => {
+                res.json("Successfully Added New Upcomming Event")
+            })
+    })
+    // GET ALL UPCOMMING EVENT
+    app.get('/upcommingevent', (req, res) => {
+        upCommingEvent.find({})
+            .toArray((err, documents) => {
+                res.send(documents)
+            })
+    })
 })
 
 
