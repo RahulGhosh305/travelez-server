@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
     res.send("Welcome Root Route!!!")
 })
 
+const ObjectId = require('mongodb').ObjectId;
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${process.env.PROJECT_USERNAME}:${process.env.PROJECT_USER_PASSWORD}@cluster0.ensig.mongodb.net/${process.env.PROJECT_DATABASENAME}?retryWrites=true&w=majority`;
 
@@ -55,11 +56,19 @@ client.connect(err => {
                 console.log("Error Are :", err);
             })
     })
-    // GET ALL PACKAGES 
+    // GET ALL PACKAGES PLAN
     app.get('/allTourPackages', (req, res) => {
         allTourPackages.find({})
             .toArray((err, documents) => {
                 res.send(documents);
+            })
+    })
+    // DELETE TOUR PACKAGE PLAN
+    app.delete('/deleteSingleTourPackage/:id', (req, res) => {
+        const id = req.params.id
+        allTourPackages.deleteOne({ _id: ObjectId(id) })
+            .then(result => {
+                res.json("Deleted Tour Package Successfully")
             })
     })
     // POST BLOG POST 
@@ -79,6 +88,14 @@ client.connect(err => {
         allBlogs.find({})
             .toArray((err, documents) => {
                 res.send(documents)
+            })
+    })
+    // DELETE SPECIFIC BLOG POST
+    app.delete('/deleteSingleBlog/:id', (req, res) => {
+        const id = req.params.id
+        allBlogs.deleteOne({ _id: ObjectId(id) })
+            .then(result => {
+                res.json("Deleted Blog Post")
             })
     })
     // POST CONTACT US MESSAGE
