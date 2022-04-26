@@ -48,7 +48,7 @@ client.connect(err => {
     app.post('/allTourPackages', (req, res) => {
         const data = req.body;
         console.log(data);
-        allTourPackages.insertOne(data)
+        allTourPackages.insertMany(data)
             .then(result => {
                 res.json("Successfully Added New Tour")
                 console.log("Server : Successfully Added New Tour");
@@ -62,6 +62,14 @@ client.connect(err => {
         allTourPackages.find({})
             .toArray((err, documents) => {
                 res.send(documents);
+            })
+    })
+    // GET SINGLE PACKAGE PLAN
+    app.get('/singleTourPackage/:id', (req, res) => {
+        const id = req.params.id;
+        allTourPackages.find({ _id: ObjectId(id) })
+            .toArray((err, documents) => {
+                res.send(documents[0])
             })
     })
     // DELETE TOUR PACKAGE PLAN
@@ -89,6 +97,15 @@ client.connect(err => {
         allBlogs.find({})
             .toArray((err, documents) => {
                 res.send(documents)
+            })
+    })
+    // FIND SPECIFIC BLOG POST
+    app.get('/singleBlog/:id', (req, res) => {
+        const id = req.params.id
+        console.log(id);
+        allBlogs.find({ _id: ObjectId(id) })
+            .toArray((err, documents) => {
+                res.send(documents[0])
             })
     })
     // DELETE SPECIFIC BLOG POST
@@ -164,6 +181,14 @@ client.connect(err => {
         upCommingEvent.find({})
             .toArray((err, documents) => {
                 res.send(documents)
+            })
+    })
+    // GET SINGLE EVENT
+    app.get('/upcommingevent/:id', (req, res) => {
+        const id = req.params.id
+        upCommingEvent.find({ _id: ObjectId(id) })
+            .toArray((err, documents) => {
+                res.send(documents[0])
             })
     })
 })
