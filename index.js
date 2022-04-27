@@ -27,6 +27,7 @@ client.connect(err => {
     const admins = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("admins");
     const bookClientsTours = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("bookClientsTours");
     const upCommingEvent = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("upCommingEvent");
+    const messages = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("messages");
 
 
     // ADD NEW ADMINS
@@ -189,6 +190,20 @@ client.connect(err => {
         upCommingEvent.find({ _id: ObjectId(id) })
             .toArray((err, documents) => {
                 res.send(documents[0])
+            })
+    })
+    // POST GET IN TOUCH MESSAGE
+    app.post('/touchInTouchMessage', (req, res) => {
+        const data = req.body;
+        messages.insertOne(data)
+            .then(result => {
+                res.json("Successfully Sent Message")
+            })
+    })
+    app.get('/touchInTouchMessage', (req, res) => {
+        messages.find({})
+            .toArray((err, documents) => {
+                res.send(documents)
             })
     })
 })
