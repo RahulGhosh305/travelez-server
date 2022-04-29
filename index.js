@@ -169,6 +169,24 @@ client.connect(err => {
                 res.send(documents)
             })
     })
+    // DASHBOARD PAGE -: GET INDIVIDUAL CLIEN TOUR ORDER
+    app.get('/individualBookTour', (req, res) => {
+        const searchEmail = req.query.email
+        // console.log(searchEmail)
+        bookClientsTours.find({ logInEmail: searchEmail })
+            .toArray((err, documents) => {
+                res.send(documents)
+            })
+    })
+    // DASHBOARD PAGE -: GET BOOKED SINGLE TOUR
+    app.get('/individualBookTour/:id', (req, res) => {
+        const id = req.params.id
+        bookClientsTours.find({ _id: ObjectId(id) })
+            .toArray((err, documents) => {
+                res.send(documents[0])
+            })
+    })
+
     // POST UPCOMMING EVENT
     app.post('/upcommingevent', (req, res) => {
         const data = req.body;
