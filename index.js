@@ -35,7 +35,7 @@ client.connect(err => {
         const data = req.body;
         admins.insertOne(data)
             .then(result => {
-                res.json("Successfully Added New Admin")
+                res.json("Successfully Added New Admin Email")
             })
     })
     // GET ALL ADMINS
@@ -43,6 +43,14 @@ client.connect(err => {
         admins.find({})
             .toArray((err, documents) => {
                 res.send(documents)
+            })
+    })
+    // FIND SPECIFIC ADMIN EMAIL ID 
+    app.delete('/admins/:id', (req, res) => {
+        const id = req.params.id
+        admins.deleteOne({ _id: ObjectId(id) })
+            .then(result => {
+                res.json("Delete Email Successfully")
             })
     })
     // ADD NEW TOUR PACKAGE PLAN
@@ -103,7 +111,7 @@ client.connect(err => {
     // FIND SPECIFIC BLOG POST
     app.get('/singleBlog/:id', (req, res) => {
         const id = req.params.id
-        console.log(id);
+        // console.log(id);
         allBlogs.find({ _id: ObjectId(id) })
             .toArray((err, documents) => {
                 res.send(documents[0])
@@ -186,7 +194,6 @@ client.connect(err => {
                 res.send(documents[0])
             })
     })
-
     // POST UPCOMMING EVENT
     app.post('/upcommingevent', (req, res) => {
         const data = req.body;
@@ -222,6 +229,22 @@ client.connect(err => {
         messages.find({})
             .toArray((err, documents) => {
                 res.send(documents)
+            })
+    })
+    app.get('/viewMessage/:id', (req, res) => {
+        const id = req.params.id
+        // console.log(id)
+        contactUsMessages.find({ _id: ObjectId(id) })
+            .toArray((err, documents) => {
+                res.send(documents[0])
+            })
+    })
+    app.get('/touchViewMessage/:id', (req, res) => {
+        const id = req.params.id
+        console.log(id)
+        messages.find({ _id: ObjectId(id) })
+            .toArray((err, documents) => {
+                res.send(documents[0])
             })
     })
 })
