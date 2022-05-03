@@ -217,6 +217,14 @@ client.connect(err => {
                 res.send(documents[0])
             })
     })
+    // SINGLE EVENT DELETE
+    app.delete('/upcommingevent/:id', (req, res) => {
+        const id = req.params.id
+        upCommingEvent.deleteOne({ _id: ObjectId(id) })
+            .then(result => {
+                res.json("Successfully Delete Event")
+            })
+    })
     // POST GET IN TOUCH MESSAGE
     app.post('/touchInTouchMessage', (req, res) => {
         const data = req.body;
