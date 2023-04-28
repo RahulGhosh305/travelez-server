@@ -17,18 +17,16 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${process.env.PROJECT_USERNAME}:${process.env.PROJECT_USER_PASSWORD}@cluster0.ensig.mongodb.net/${process.env.PROJECT_DATABASENAME}?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
 client.connect(err => {
-    // console.log(err)
     const allTourPackages = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("allTourPackages");
     const allBlogs = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("allBlogs");
     const contactUsMessages = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("contactUsMessages");
-    console.log("DataBase Connected")
     const subcribersEmail = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("subcribersEmail");
     const admins = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("admins");
     const bookClientsTours = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("bookClientsTours");
     const upCommingEvent = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("upCommingEvent");
     const messages = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("messages");
-
 
     // ADD NEW ADMINS
     app.post('/admins', (req, res) => {
@@ -53,6 +51,7 @@ client.connect(err => {
                 res.json("Delete Email Successfully")
             })
     })
+
     // ADD NEW TOUR PACKAGE PLAN
     app.post('/allTourPackages', (req, res) => {
         const data = req.body;
@@ -89,6 +88,7 @@ client.connect(err => {
                 res.json("Deleted Tour Package Successfully")
             })
     })
+
     // POST BLOG POST 
     app.post('/addBlogs', (req, res) => {
         const data = req.body;
@@ -125,6 +125,7 @@ client.connect(err => {
                 res.json("Deleted Blog Post")
             })
     })
+
     // POST CONTACT US MESSAGE
     app.post('/contactUsMessage', (req, res) => {
         const data = req.body;
@@ -144,6 +145,7 @@ client.connect(err => {
                 res.send(documents)
             })
     })
+
     // POST SUBCRIBERS EMAILS
     app.post('/subcribers', (req, res) => {
         const data = req.body;
@@ -159,6 +161,7 @@ client.connect(err => {
                 res.send(documents)
             })
     })
+
     // BOOK CLIENT TOUR ORDERS
     app.post('/bookTour', (req, res) => {
         const data = req.body;
@@ -194,6 +197,7 @@ client.connect(err => {
                 res.send(documents[0])
             })
     })
+
     // POST UPCOMMING EVENT
     app.post('/upcommingevent', (req, res) => {
         const data = req.body;
@@ -225,6 +229,7 @@ client.connect(err => {
                 res.json("Successfully Delete Event")
             })
     })
+
     // POST GET IN TOUCH MESSAGE
     app.post('/touchInTouchMessage', (req, res) => {
         const data = req.body;
@@ -255,8 +260,10 @@ client.connect(err => {
                 res.send(documents[0])
             })
     })
-})
 
+    console.log("database connected");
+
+});
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
