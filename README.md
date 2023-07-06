@@ -13,7 +13,7 @@ In the project directory connected to the fronted-end-site (Travelez). This proj
 - Customers can contact to admin through drop a message.
 - Admin control (CURD Operation)
 - Admin manage events
-- For project hosting used firebase and heroku.
+- For project hosting used firebase and Railway.
 
 ##### Front-end Github Link [Repo](https://github.com/RahulGhosh305/travelez-client).
 
