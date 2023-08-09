@@ -33,6 +33,7 @@ client.connect(err => {
         res.send("Welcome Root Route!!!")
     })
 
+
     // ADD NEW ADMINS
     app.post('/admins', (req, res) => {
         const data = req.body;
