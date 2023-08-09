@@ -2,7 +2,7 @@
 
 ## (MERN Stack Project)
 
-In the project directory connected to the fronted-end-site (Travelez). This project based on A Tourism Website with booking tour destination through online. [Demo Project](https://travelez-c91e7.web.app/).
+In the project directory connected to the fronted-end-site (Travelez). This project based on A Tourism Website with booking tour destination through online. [Demo Project](https://travelez-c91e7.web.app/)
 
 ### Features
 
