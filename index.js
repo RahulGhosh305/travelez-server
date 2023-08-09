@@ -4,7 +4,13 @@ const bodyParser = require('body-parser');
 const app = express();
 require('dotenv').config()
 
-app.use(cors())
+app.use(cors(
+    {
+        origin: ["https://travelez-server.vercel.app"],
+        methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+        credentials: true
+    }
+))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
