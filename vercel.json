@@ -9,7 +9,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/travelez-server/"
+        "dest": "./index.js"
       }
     ]
   }
