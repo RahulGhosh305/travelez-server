@@ -7,7 +7,7 @@ In the project directory connected to the fronted-end-site (Travelez). This proj
 ### Features
 
 - This project is designed with beautiful 20+ big & small pages UI design and real content writing.
-- Used Sign-up with Google and Create account with email and password, Sign-In, Signout functionalities.
+- Used Sign-up with Google and Create account with email and password, Signt-In, Signout functionalities.
 - Also, have a verification email account process, have also password reset process.
 - Different customer and admin dashboards created.
 - Customers can contact to admin through drop a message.
