@@ -6,7 +6,7 @@ require('dotenv').config()
 
 app.use(cors(
     {
-        origin: ["https://travelez-server.vercel.app"],
+        origin: ["https://travelez-c91e7.web.app"],
         methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
         credentials: true
     }
