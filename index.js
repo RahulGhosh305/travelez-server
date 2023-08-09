@@ -8,9 +8,9 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
-    res.send("Welcome Root Route!!!")
-})
+// app.get('/', (req, res) => {
+//     res.send("Welcome Root Route!!!")
+// })
 
 const ObjectId = require('mongodb').ObjectId;
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -264,6 +264,10 @@ client.connect(err => {
     console.log("database connected");
 
 });
+
+app.get('/', (req, res) => {
+    res.send("Welcome Root Route!!!")
+})
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
