@@ -34,11 +34,6 @@ client.connect(err => {
     const upCommingEvent = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("upCommingEvent");
     const messages = client.db(`${process.env.PROJECT_DATABASENAME}`).collection("messages");
 
-
-    app.get('/', (req, res) => {
-        res.send("Welcome Root Route!!!")
-    })
-
     // ADD NEW ADMINS
     app.post('/admins', (req, res) => {
         const data = req.body;
@@ -272,8 +267,12 @@ client.connect(err => {
             })
     })
 
-    console.log("database connected");
 
+    app.get('/', (req, res) => {
+        res.send("Welcome Root Route!!!")
+    })
+
+    console.log("database connected");
 });
 
 const PORT = process.env.PORT || 5000
